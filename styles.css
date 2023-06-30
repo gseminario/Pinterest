@@ -15,6 +15,22 @@ body {
     align-items: center;
   }
   
+  #navbar-links {
+    display: flex;
+    align-items: center;
+  }
+  
+  #search {
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  #icons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
   #navbar-pinterest img {
     height: 40px;
     margin-right: 10px;
@@ -69,6 +85,7 @@ body {
   }
   
   /* Estilos de las tarjetas de imagen */
+  
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -126,7 +143,7 @@ body {
     text-align: center;
   }
   
-  /* Media queries para dispositivos móviles */
+  /* Media queries para dispositivos móviles y tabletas */
   @media (max-width: 767px) {
     #navbar-pinterest {
       flex-direction: column;
@@ -154,6 +171,11 @@ body {
     .card {
       width: calc(100% / 2 - 10px);
     }
-    
+  }
+  
+  @media (max-width: 1024px) {
+    .card {
+      width: calc(100% / 3 - 10px);
+    }
   }
   

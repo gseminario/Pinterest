@@ -1,36 +1,26 @@
-// Funcionalidad del menú burger
-const navbarToggle = document.getElementById('navbar-toggle');
-const navbarLinks = document.getElementById('navbar-links');
-navbarToggle.addEventListener('click', function() {
-  navbarLinks.classList.toggle('active');
-});
-
-// Funcionalidad del buscador
+// Obtener referencias a los elementos necesarios
 const searchButton = document.getElementById('search-button');
+const searchInput = document.querySelector('#search input');
+const cardContainer = document.querySelector('.card-container');
+
+// Escuchar el evento click del botón de búsqueda
 searchButton.addEventListener('click', function() {
-  const searchInput = document.querySelector('#search input');
-  const searchValue = searchInput.value.trim();
-  if (searchValue !== '') {
-    alert('Realizar búsqueda: ' + searchValue);
-    // Aquí puedes agregar la lógica para realizar la búsqueda real
-  }
-});
+  // Obtener el valor de búsqueda del input
+  const searchTerm = searchInput.value.trim().toLowerCase();
 
-// Funcionalidad de los iconos
-const notificationsIcon = document.getElementById('notifications');
-notificationsIcon.addEventListener('click', function() {
-  alert('Mostrar notificaciones');
-  // Aquí puedes agregar la lógica para mostrar las notificaciones
-});
+  // Filtrar las imágenes según el término de búsqueda
+  const filteredCards = Array.from(cardContainer.getElementsByClassName('card')).filter(function(card) {
+    // Obtener el nombre de la imagen asociada a la tarjeta
+    const imageName = card.querySelector('img').getAttribute('alt').toLowerCase();
+    // Verificar si el término de búsqueda está presente en el nombre de la imagen
+    return imageName.includes(searchTerm);
+  });
 
-const messageIcon = document.getElementById('message');
-messageIcon.addEventListener('click', function() {
-  alert('Abrir mensajes');
-  // Aquí puedes agregar la lógica para abrir los mensajes
-});
-
-const profileIcon = document.getElementById('profile-img');
-profileIcon.addEventListener('click', function() {
-  alert('Abrir perfil');
-  // Aquí puedes agregar la lógica para abrir el perfil del usuario
+  // Mostrar solo las tarjetas que coinciden con el término de búsqueda y ocultar las demás
+  Array.from(cardContainer.getElementsByClassName('card')).forEach(function(card) {
+    card.style.display = 'none';
+  });
+  filteredCards.forEach(function(card) {
+    card.style.display = 'block';
+  });
 });
